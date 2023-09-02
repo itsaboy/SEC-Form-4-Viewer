@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <!--Metadata-->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+
+        <!--CSS-->
+        <link rel="stylesheet" href="./assets/css/layout.css">
+        <link rel="stylesheet" href="./assets/css/style.css">
+
+        <!--External Scripts-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <!--Internal Scripts-->
+        <script src="./assets/scripts/global.js" defer></script>
+        <script src="./assets/scripts/main.js" defer></script>
+        <script src="./assets/scripts/init.js" defer></script>
+    </head>
+
+    <body class="bg-teal-400 font-primary">
+        <div class="body-container">
+
+            <!--Header-->
+            <header id="header" class="bg-teal-950">
+                <div class="header-container">
+
+                    <!--Form-->
+                    <form id="search-form">
+                        <div class="search-form-container">
+                            <label id="form-label" for="form-input" class="text-lg text-teal-200 px-2 py-1">
+                                Ticker Input:
+                            </label>
+                            <input id="form-input" class="w-32 text-lg border-solid border-2 rounded-lg p-1 border-teal-600 bg-slate-100 shadow-inner">
+                            <button id="form-button" class="w-32 text-lg px-5 py-1 border-solid border-2 rounded-full border-teal-600 bg-teal-200 shadow-lg">
+                                Search
+                            </button>
+                        </div>
+                    </form>
+
+                    <!--Heading-->
+                    <h1 id="title" class="text-teal-200 text-5xl p-5">
+                        Form 4 Viewer
+                    </h1>
+                </div>
+            </header>
+
+            <!--Main-->
+            <main id="main" class="bg-teal-400">
+                <div class="main-container">
+
+                    <!--Watchlist-->
+                    <section id="watchlist" class="bg-teal-600 rounded-lg shadow-2xl">
+                        <!--Form-->
+                        <form id="watchlist-form">
+                            <div class="watchlist-form-container">
+                                <label id="watchlist-label" for="history" class="text-3xl">
+                                    Watchlist
+                                </label>
+                                <select id="history" class="text-xl px-5 py-1 border-solid border-2 rounded-lg border-slate-800 bg-slate-100 shadow-lg">
+                                    <option>
+                                        Ticker
+                                    </option>
+                                </select>
+                                <button id="load-button" class="w-24 text-lg px-5 py-1 border-solid border-2 rounded-full border-slate-800 bg-teal-200 shadow-lg">
+                                    Load
+                                </button>
+                                <button id="delete-button" class="w-24 text-lg px-5 py-1 border-solid border-2 rounded-full border-slate-800 bg-teal-200 shadow-lg">
+                                    Delete
+                                </button>
+                            </div>
+                        </form>
+                    </section>
+
+                    <!--Results/Output-->
+                    <section id="search-results" class="bg-teal-800 rounded-lg shadow-2xl">
+                        <div class="results-container">
+                            <h2 id="output-heading" class="text-3xl">
+                                Output
+                            </h2>
+                            <section id="output">
+                                <div class="results-container">
+                                    <p id="doc-type" class="text-2xl text-slate-100">
+                                        <!--content injected by main.js-->
+                                    </p>
+                                    <p id="report-date" class="text-2xl text-slate-100">
+                                        <!--content injected by main.js-->
+                                    </p>
+                                    <p id="report-owner" class="text-2xl text-slate-100">
+                                        <!--content injected by main.js-->
+                                    </p>
+                                    <p id="transaction-date" class="text-2xl text-slate-100">
+                                        <!--content injected by main.js-->
+                                    </p>
+                                    <p id="shares-amount" class="text-2xl text-slate-100">
+                                        <!--content injected by main.js-->
+                                    </p>
+                                    <p id="price-per-share" class="text-2xl text-slate-100">
+                                        <!--content injected by main.js-->
+                                    </p>    
+                                    <p id="buy-or-sell" class="text-2xl text-slate-100">
+                                        <!--content injected by main.js-->
+                                    </p>
+                                </div>
+                            </section>
+                        </div>
+                    </section>
+                </div>
+            </main>
+
+            <!--Footer-->
+            <footer id="footer" class="bg-teal-950">
+                <div class="footer-container">
+                    <p>
+                        Disclaimer:
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </body>
+    
+</html>

@@ -1,0 +1,177 @@
+/* ==========================================================================
+   Body Container
+========================================================================== */
+
+.body-container {
+    display: grid;
+    grid-template-areas:
+    "header"
+    "main"
+    "footer";
+    grid-template-rows: 1fr 8fr 1fr;
+    grid-template-columns: 1fr;
+    height: 100vh;
+    gap: 3rem;
+}
+
+/* Body Grid Item IDs */
+
+#header {
+    grid-area: header;
+}
+
+#main {
+    grid-area: main;
+}
+
+#footer {
+    grid-area: footer;
+}
+
+/* ==========================================================================
+   Header Container
+========================================================================== */
+
+.header-container {
+    display: grid;
+    grid-template-areas:
+    "search-form title";
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 2fr;
+    height: 100%;
+}
+
+/* Header Grid Item IDs */
+
+#form {
+    grid-area: form;
+}
+
+#title {
+    grid-area: title;
+    place-self: center end;
+}
+
+/* Search Form Container
+========================================================================== */
+
+.search-form-container {
+    display: grid;
+    grid-template-areas:
+    "form-label form-input form-button";
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    height: 100%;
+    place-items: center;
+}
+
+/* Search Form Grid Item IDs */
+
+#form-label {
+    grid-area: form-label;
+    place-self: center end;
+}
+
+#form-input {
+    grid-area: form-input;
+    text-align: center;
+}
+
+#form-button {
+    grid-area: form-button;
+}
+
+/* ==========================================================================
+   Main Container
+========================================================================== */
+
+.main-container {
+    display: grid;
+    grid-template-areas:
+    "watchlist search-results";
+    grid-template-rows: 1fr;
+    grid-template-columns: 2fr 3fr;
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+    gap: 3rem;
+}
+
+/* Main Grid Item IDs */
+
+#watchlist {
+    grid-area: watchlist;
+}
+
+#search-results {
+    grid-area: search-results;
+}
+
+/* Watchlist Form Container
+========================================================================== */
+
+#watchlist-form {
+    height: 100%;
+}
+
+.watchlist-form-container {
+    display: grid;
+    grid-template-areas:
+    "watchlist-label watchlist-label"
+    "history history"
+    "load-button delete-button";
+    grid-template-rows: 1fr 6r 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    height: 80%;
+    place-items: center;
+}
+
+/* Search Form Grid Item IDs */
+
+#watchlist-label {
+    grid-area: watchlist-label;
+    place-self: end center;
+}
+
+#history {
+    grid-area: history;
+}
+
+#load-button {
+    grid-area: load-button;
+}
+
+#delete-button {
+    grid-area: delete-button;
+}
+
+/* Results Container
+========================================================================== */
+
+.results-container {
+    display: grid;
+    grid-template-areas:
+    "output-heading"
+    "output";
+    grid-template-rows: 1fr 4fr;
+    grid-template-columns: 1fr;
+    height: 100%;
+    place-items: center;
+}
+
+/* Results Grid Item IDs */
+
+#output-heading {
+    grid-area: output-heading;
+}
+
+#output {
+    grid-area: output;
+}
+
+.footer-container {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    text-align: center;
+}

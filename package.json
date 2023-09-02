@@ -1,0 +1,22 @@
+{
+  "name": "sec-form-4-viewer",
+  "version": "1.0.0",
+  "description": "App that lets the user create a watchlist of tickers and view the most recent SEC form 4 filings for each name",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tailwindcss -i ./public/assets/css/tailwind.css -o ./public/assets/css/style.css",
+    "watch": "tailwindcss -i ./public/assets/css/tailwind.css -o ./public/assets/css/style.css --watch"
+  },
+  "keywords": [],
+  "author": "Zachary Richardson",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jquery": "^3.7.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  }
+}
