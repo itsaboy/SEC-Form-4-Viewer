@@ -12,7 +12,7 @@ jQuery(() => {
             errorMessage = "Search field is empty!";
             errorState(errorMessage);
         } else {
-            getForm4();
+            getForm4(API_LINK);
         };
     });
 
@@ -29,7 +29,7 @@ jQuery(() => {
             errorMessage = "No ticker selected!";
             errorState(errorMessage);
         } else {
-            getForm4(link);
+            getForm4(API_LINK);
         };
     });
 
