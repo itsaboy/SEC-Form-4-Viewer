@@ -12,7 +12,7 @@ jQuery(() => {
             errorMessage = "Search field is empty!";
             errorState(errorMessage);
         } else {
-            getForm4(link);
+            getForm4();
         };
     });
 
