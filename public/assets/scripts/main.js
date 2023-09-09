@@ -101,6 +101,7 @@ const deleteTicker = () => {
             localStorage.clear();
         };
     };
+    activeTicker = "";
     reloadData();
 };
 

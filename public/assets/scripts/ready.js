@@ -36,7 +36,6 @@ jQuery(() => {
     // Button to delete a ticker from watchlist
     $("#delete-button").on("click", (event) => {
         event.preventDefault();
-        activeTicker = "";
         deleteTicker();
     });
 
