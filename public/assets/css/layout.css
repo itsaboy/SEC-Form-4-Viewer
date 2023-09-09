@@ -37,14 +37,17 @@
     grid-template-areas:
     "search-form title";
     grid-template-rows: 1fr;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 2fr 3fr;
     height: 100%;
+    width: 80%;
+    margin: 0 auto;
+    gap: 3rem;
 }
 
 /* Header Grid Item IDs */
 
-#form {
-    grid-area: form;
+#search-form {
+    grid-area: search-form;
 }
 
 #title {
@@ -69,7 +72,6 @@
 
 #form-label {
     grid-area: form-label;
-    place-self: center end;
 }
 
 #form-input {
@@ -88,8 +90,9 @@
 .main-container {
     display: grid;
     grid-template-areas:
-    "watchlist search-results";
-    grid-template-rows: 1fr;
+    "watchlist search-results"
+    "image search-results";
+    grid-template-rows: repeat(2, 1fr);
     grid-template-columns: 2fr 3fr;
     height: 100%;
     width: 80%;
@@ -101,6 +104,11 @@
 
 #watchlist {
     grid-area: watchlist;
+}
+
+#image {
+    grid-area: image;
+    place-self: center;
 }
 
 #search-results {
@@ -145,33 +153,67 @@
     grid-area: delete-button;
 }
 
-/* Results Container
+/* Output Container
 ========================================================================== */
 
-.results-container {
+.output-container {
     display: grid;
-    grid-template-areas:
-    "output-heading"
-    "output";
-    grid-template-rows: 1fr 4fr;
-    grid-template-columns: 1fr;
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(
+                min(15rem, 100%), 
+                1fr
+            )
+        );
     height: 100%;
     place-items: center;
+    gap: 1rem;
 }
 
-/* Results Grid Item IDs */
-
-#output-heading {
-    grid-area: output-heading;
-}
-
-#output {
-    grid-area: output;
-}
+/* ==========================================================================
+   Footer Container
+========================================================================== */
 
 .footer-container {
     display: grid;
     place-items: center;
     height: 100%;
     text-align: center;
+}
+
+/* Loading Modal Container
+========================================================================== */
+
+#loading-modal {
+    width: 25%;
+    height: 25%;
+    margin: auto;
+}
+
+.loading-container {
+    display: grid;
+    height: 100%;
+    place-items: center;
+}
+
+/* Error Modal Container
+========================================================================== */
+
+#error-modal {
+    width: 25%;
+    height: 25%;
+    margin: auto;
+}
+
+.modal-container {
+    display: grid;
+    grid-template-areas:
+    "error-txt"
+    "error-code"
+    "error-button";
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: 1fr;
+    height: 100%;
+    place-items: center;
 }

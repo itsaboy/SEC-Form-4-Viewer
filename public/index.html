@@ -6,9 +6,9 @@
         <!--Metadata-->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible">
-        <meta name="description" content="">
+        <meta name="description" content="Site that allows the user to search for the most recent SEC Form 4s filed in specific ticker symbols">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title></title>
+        <title>SEC Form 4 Viewer</title>
 
         <!--CSS-->
         <link rel="stylesheet" href="./assets/css/layout.css">
@@ -18,9 +18,10 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
         <!--Internal Scripts-->
+        <script src="./assets/scripts/saved.js" defer></script>
         <script src="./assets/scripts/global.js" defer></script>
         <script src="./assets/scripts/main.js" defer></script>
-        <script src="./assets/scripts/init.js" defer></script>
+        <script src="./assets/scripts/ready.js" defer></script>
     </head>
 
     <body class="bg-teal-400 font-primary">
@@ -29,7 +30,6 @@
             <!--Header-->
             <header id="header" class="bg-teal-950">
                 <div class="header-container">
-
                     <!--Form-->
                     <form id="search-form">
                         <div class="search-form-container">
@@ -37,14 +37,13 @@
                                 Ticker Input:
                             </label>
                             <input id="form-input" class="w-32 text-lg border-solid border-2 rounded-lg p-1 border-teal-600 bg-slate-100 shadow-inner">
-                            <button id="form-button" class="w-32 text-lg px-5 py-1 border-solid border-2 rounded-full border-teal-600 bg-teal-200 shadow-lg">
+                            <button id="form-button" class="w-32 text-lg px-5 py-1 border-solid border-2 rounded-full border-teal-600 bg-teal-200 shadow-lg hover:border-teal-200 hover:bg-slate-800 hover:text-teal-200 active:translate-y-1">
                                 Search
                             </button>
                         </div>
                     </form>
-
                     <!--Heading-->
-                    <h1 id="title" class="text-teal-200 text-5xl p-5">
+                    <h1 id="title" class="text-teal-200 text-5xl py-10">
                         Form 4 Viewer
                     </h1>
                 </div>
@@ -53,9 +52,8 @@
             <!--Main-->
             <main id="main" class="bg-teal-400">
                 <div class="main-container">
-
                     <!--Watchlist-->
-                    <section id="watchlist" class="bg-teal-600 rounded-lg shadow-2xl">
+                    <section id="watchlist" class="bg-teal-600 rounded-lg shadow-2xl border-solid border-2 border-slate-600">
                         <!--Form-->
                         <form id="watchlist-form">
                             <div class="watchlist-form-container">
@@ -63,50 +61,311 @@
                                     Watchlist
                                 </label>
                                 <select id="history" class="text-xl px-5 py-1 border-solid border-2 rounded-lg border-slate-800 bg-slate-100 shadow-lg">
-                                    <option>
-                                        Ticker
-                                    </option>
+                                    <!-- content injected by main.js -->
                                 </select>
-                                <button id="load-button" class="w-24 text-lg px-5 py-1 border-solid border-2 rounded-full border-slate-800 bg-teal-200 shadow-lg">
+                                <button id="load-button" class="w-24 text-lg px-5 py-1 border-solid border-2 rounded-full border-slate-800 bg-teal-200 shadow-lg hover:border-teal-200 hover:bg-slate-800 hover:text-teal-200 active:translate-y-1">
                                     Load
                                 </button>
-                                <button id="delete-button" class="w-24 text-lg px-5 py-1 border-solid border-2 rounded-full border-slate-800 bg-teal-200 shadow-lg">
+                                <button id="delete-button" class="w-24 text-lg px-5 py-1 border-solid border-2 rounded-full border-slate-800 bg-teal-200 shadow-lg hover:border-teal-200 hover:bg-slate-800 hover:text-teal-200 active:translate-y-1">
                                     Delete
                                 </button>
                             </div>
                         </form>
                     </section>
-
+                    <!--SEC -->
+                    <section id="image">
+                        <img src="./assets/icons/SEC.svg" alt="Securities and Exchange Commission logo" class="max-h-80">
+                    </section>
                     <!--Results/Output-->
-                    <section id="search-results" class="bg-teal-800 rounded-lg shadow-2xl">
-                        <div class="results-container">
-                            <h2 id="output-heading" class="text-3xl">
-                                Output
-                            </h2>
-                            <section id="output">
-                                <div class="results-container">
-                                    <p id="doc-type" class="text-2xl text-slate-100">
-                                        <!--content injected by main.js-->
-                                    </p>
-                                    <p id="report-date" class="text-2xl text-slate-100">
-                                        <!--content injected by main.js-->
-                                    </p>
-                                    <p id="report-owner" class="text-2xl text-slate-100">
-                                        <!--content injected by main.js-->
-                                    </p>
-                                    <p id="transaction-date" class="text-2xl text-slate-100">
-                                        <!--content injected by main.js-->
-                                    </p>
-                                    <p id="shares-amount" class="text-2xl text-slate-100">
-                                        <!--content injected by main.js-->
-                                    </p>
-                                    <p id="price-per-share" class="text-2xl text-slate-100">
-                                        <!--content injected by main.js-->
-                                    </p>    
-                                    <p id="buy-or-sell" class="text-2xl text-slate-100">
-                                        <!--content injected by main.js-->
-                                    </p>
-                                </div>
+                    <section id="search-results" class="bg-teal-800 rounded-lg shadow-2xl border-solid border-2 border-slate-600 text-lg text-teal-200 p-5 hidden">
+                        <div id="output-container" class="output-container">
+                            <!--Result One-->
+                            <section id="result1">
+                                <p id="doc-type1">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="report-date1">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="report-owner1">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="transaction-date1">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="shares-amount1">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="price-per-share1">
+                                    <!--content injected by main.js-->
+                                </p>    
+                                <p id="buy-or-sell1">
+                                    <!--content injected by main.js-->
+                                </p>
+                            </section>
+                            <!--Result Two-->
+                            <section id="result2">
+                                <p id="doc-type2">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="report-date2">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="report-owner2">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="transaction-date2">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="shares-amount2">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="price-per-share2">
+                                    <!--content injected by main.js-->
+                                </p>    
+                                <p id="buy-or-sell2">
+                                    <!--content injected by main.js-->
+                                </p>
+                            </section>
+                            <!--Result Three-->
+                            <section id="result3">
+                                <p id="doc-type3">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="report-date3">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="report-owner3">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="transaction-date3">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="shares-amount3">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="price-per-share3">
+                                    <!--content injected by main.js-->
+                                </p>    
+                                <p id="buy-or-sell3">
+                                    <!--content injected by main.js-->
+                                </p>
+                            </section>
+                            <!--Result Four-->
+                            <section id="result4">
+                                <p id="doc-type4">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="report-date4">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="report-owner4">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="transaction-date4">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="shares-amount4">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="price-per-share4">
+                                    <!--content injected by main.js-->
+                                </p>    
+                                <p id="buy-or-sell4">
+                                    <!--content injected by main.js-->
+                                </p>
+                            </section>
+                            <!--Result Five-->
+                            <section id="result5">
+                                <p id="doc-type5">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="report-date5">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="report-owner5">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="transaction-date5">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="shares-amount5">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="price-per-share5">
+                                    <!--content injected by main.js-->
+                                </p>    
+                                <p id="buy-or-sell5">
+                                    <!--content injected by main.js-->
+                                </p>
+                            </section>
+                            <!--Result Six-->
+                            <section id="result6">
+                                <p id="doc-type6">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="report-date6">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="report-owner6">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="transaction-date6">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="shares-amount6">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="price-per-share6">
+                                    <!--content injected by main.js-->
+                                </p>    
+                                <p id="buy-or-sell6">
+                                    <!--content injected by main.js-->
+                                </p>
+                            </section>
+                            <!--Result Seven-->
+                            <section id="result7">
+                                <p id="doc-type7">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="report-date7">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="report-owner7">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="transaction-date7">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="shares-amount7">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="price-per-share7">
+                                    <!--content injected by main.js-->
+                                </p>    
+                                <p id="buy-or-sell7">
+                                    <!--content injected by main.js-->
+                                </p>
+                            </section>
+                            <!--Result Eight-->
+                            <section id="result8">
+                                <p id="doc-type8">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="report-date8">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="report-owner8">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="transaction-date8">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="shares-amount8">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="price-per-share8">
+                                    <!--content injected by main.js-->
+                                </p>    
+                                <p id="buy-or-sell8">
+                                    <!--content injected by main.js-->
+                                </p>
+                            </section>
+                            <!--Result Nine-->
+                            <section id="result9">
+                                <p id="doc-type9">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="report-date9">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="report-owner9">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="transaction-date9">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="shares-amount9">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="price-per-share9">
+                                    <!--content injected by main.js-->
+                                </p>    
+                                <p id="buy-or-sell9">
+                                    <!--content injected by main.js-->
+                                </p>
+                            </section>
+                            <!--Result Ten-->
+                            <section id="result10">
+                                <p id="doc-type10">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="report-date10">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="report-owner10">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="transaction-date10">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="shares-amount10">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="price-per-share10">
+                                    <!--content injected by main.js-->
+                                </p>    
+                                <p id="buy-or-sell10">
+                                    <!--content injected by main.js-->
+                                </p>
+                            </section>
+                            <!--Result Eleven-->
+                            <section id="result11">
+                                <p id="doc-type11">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="report-date11">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="report-owner11">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="transaction-date11">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="shares-amount11">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="price-per-share11">
+                                    <!--content injected by main.js-->
+                                </p>    
+                                <p id="buy-or-sell11">
+                                    <!--content injected by main.js-->
+                                </p>
+                            </section>
+                            <!--Result Twelve-->
+                            <section id="result12">
+                                <p id="doc-type12">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="report-date12">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="report-owner12">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="transaction-date12">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="shares-amount12">
+                                    <!--content injected by main.js-->
+                                </p>
+                                <p id="price-per-share12">
+                                    <!--content injected by main.js-->
+                                </p>    
+                                <p id="buy-or-sell12">
+                                    <!--content injected by main.js-->
+                                </p>
                             </section>
                         </div>
                     </section>
@@ -115,12 +374,37 @@
 
             <!--Footer-->
             <footer id="footer" class="bg-teal-950">
-                <div class="footer-container">
-                    <p>
-                        Disclaimer:
+                <div class="footer-container text-slate-200">
+                    <p class="py-10">
+                        <span class="text-red-400">Disclaimer: </span>
+                        None of the information presented on this site should be used to make financial/trading decisions. 
                     </p>
                 </div>
             </footer>
+
+            <!--Loading Modal-->
+            <section id="loading-modal" class="hidden absolute inset-0">
+                <div class="loading-container">
+                    <img src="./assets/icons/loading.svg" class="w-1/2">
+                </div>
+            </section>
+
+            <!--Error Modal-->
+            <section id="error-modal" class="hidden absolute inset-0 bg-rose-800 rounded-3xl shadow-2xl border-solid border-2 border-slate-200">
+                <div class="modal-container">
+                    <h2 id="error-txt" class="text-rose-200 text-5xl text-center">
+                        Error!
+                    </h2>
+                    <p id="error-code" class="text-rose-200 text-3xl text-center">
+                        <!-- content injected by ... -->
+                    </p>
+                    <button id="error-button"
+                        class="w-24 bg-rose-400 px-4 py-1 rounded-full border-2 border-slate-950 hover:bg-slate-950 hover:border-slate-100 hover:text-rose-400">
+                        Ok
+                    </button>
+                </div>
+            </section>
+
         </div>
     </body>
     
